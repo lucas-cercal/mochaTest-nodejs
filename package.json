@@ -1,0 +1,10 @@
+{
+  "name": "mochaTest",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Lucas Cercal <lucascercal.fontes@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "mocha": "^10.0.0"
+  }
+}
