@@ -43,13 +43,13 @@ describe("About complete() function", function() {
 
 describe("About saveToFile() function", function() {
     it("Should save a single TODO", async function() {
-        let todos = new Todos();
-        todos.add("save a CSV");
-        await todos.saveToFile().then(() => {
-            assert.strictEqual(fs.existsSync('todos.csv'), true);
-            let expectedFileContents = "Title,Completed\nsave a CSV,false\n";
-            let content = fs.readFileSync("todos.csv").toString();
-            assert.strictEqual(content, expectedFileContents);
-        });
+      let todos = new Todos();
+      todos.add("save a CSV");
+      await todos.saveToFile();
+
+      assert.strictEqual(fs.existsSync('todos.csv'), true);
+      let expectedFileContents = "Title, Completed\nsave a CSV, false\n";
+      let content = fs.readFileSync("todos.csv").toString();
+      assert.strictEqual(content, expectedFileContents);
     });
 });

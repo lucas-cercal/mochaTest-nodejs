@@ -32,9 +32,9 @@ class Todos {
   }
 
   saveToFile() {
-    let fileContents = 'Title,Completed\n';
+    let fileContents = 'Title, Completed\n';
     this.todos.forEach((todo) => {
-        fileContents += `${todo.title},${todo.completed}\n`
+        fileContents += `${todo.title}, ${todo.completed}\n`
     });
 
     return fs.writeFile('todos.csv', fileContents);
