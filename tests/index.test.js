@@ -5,7 +5,7 @@ const fs = require('fs');
 describe("Integration Test", () => {
   it("Should be able to add and complete TODOs", () => {
     let todos = new Todos();
-    assert.strictEqual(todos.list().length, 0);
+    assert.strictEqual(todos.list().length, 0, "Value different from expected");
 
     todos.add("run code");
     assert.strictEqual(todos.list().length, 1);
