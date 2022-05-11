@@ -4,6 +4,9 @@
   "main": "index.js",
   "author": "Lucas Cercal <lucascercal.fontes@gmail.com>",
   "license": "MIT",
+  "scripts": {
+    "test": "mocha ./tests/index.test.js"
+  },
   "devDependencies": {
     "mocha": "^10.0.0"
   }
