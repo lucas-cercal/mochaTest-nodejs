@@ -42,14 +42,34 @@ describe("About complete() function", function() {
 });
 
 describe("About saveToFile() function", function() {
-    it("Should save a single TODO", async function() {
-      let todos = new Todos();
-      todos.add("save a CSV");
-      await todos.saveToFile();
 
-      assert.strictEqual(fs.existsSync('todos.csv'), true);
-      let expectedFileContents = "Title, Completed\nsave a CSV, false\n";
-      let content = fs.readFileSync("todos.csv").toString();
-      assert.strictEqual(content, expectedFileContents);
-    });
+  beforeEach(function () {
+    this.todos = new Todos();
+    this.todos.add("save a CSV");
+  });
+
+  afterEach(function () {
+    if (fs.existsSync("todos.csv")) {
+        fs.unlinkSync("todos.csv");
+    }
+  });
+
+  it("Should save a single TODO without error", async function() {
+    await this.todos.saveToFile();
+
+    assert.strictEqual(fs.existsSync('todos.csv'), true);
+    let expectedFileContents = "Title, Completed\nsave a CSV, false\n";
+    let content = fs.readFileSync("todos.csv").toString();
+    assert.strictEqual(content, expectedFileContents);
+  });
+
+  it("Should save a single TODO that's completed", async function () {
+    this.todos.complete("save a CSV");
+    await this.todos.saveToFile();
+
+    assert.strictEqual(fs.existsSync('todos.csv'), true);
+    let expectedFileContents = "Title, Completed\nsave a CSV, true\n";
+    let content = fs.readFileSync("todos.csv").toString();
+    assert.strictEqual(content, expectedFileContents);
+  });
 });
